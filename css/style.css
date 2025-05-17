@@ -155,7 +155,7 @@ p {
                     border: none;
                     padding: 10px;
                 }
-                .search {
+                .add-m {
                     color: white;
                     background-color: #4a90e2;
                     border: none;
@@ -163,6 +163,11 @@ p {
                     font-weight: bold;
                     padding: 0 10px;
                     cursor: pointer;
+                }
+                @media (min-width: 767px) {
+                    .add-m {
+                        display: none;
+                    }
                 }
             }
             .add-note {
@@ -180,6 +185,11 @@ p {
                 transition: transform 0.3s;
                 &:hover {
                     transform: rotate(90deg);
+                }
+            }
+            @media (max-width: 767px) {
+                .add-note {
+                    display: none;
                 }
             }
             .notes-area {

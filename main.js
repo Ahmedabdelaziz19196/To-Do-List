@@ -5,6 +5,8 @@ let nameForm = document.querySelector(".intro-name");
 let theMainPage = document.querySelector(".main-page");
 let greeting = document.querySelector(".time");
 let addButton = document.querySelector(".add-note");
+let addButtonM = document.querySelector(".add-m");
+
 let inputNote = document.querySelector(".toDo-input");
 let noteArea = document.querySelector(".notes-area");
 
@@ -23,6 +25,27 @@ inputNote.addEventListener("keydown", function (event) {
         addButton.click();
     }
 });
+
+//get name from local Storage
+if (window.localStorage.getItem("name")) {
+    theName.textContent = window.localStorage.getItem("name");
+    greeting.textContent = window.localStorage.getItem("time");
+    nameForm.style.opacity = "0";
+    theMainPage.style.display = "flex";
+
+    //initialize Event Listeners
+    initializeEventListeners();
+}
+
+if (window.localStorage.getItem("the notes")) {
+    let savedNotes = localStorage.getItem("the notes").split(",");
+    savedNotes.forEach((noteText) => {
+        if (noteText.trim() !== "") {
+            displaySavedNote(noteText.trim());
+        }
+    });
+}
+
 submitButton.addEventListener("click", function () {
     if (nameInput.value !== "" && Number.isNaN(+nameInput.value)) {
         //set the name
@@ -33,19 +56,28 @@ submitButton.addEventListener("click", function () {
         //Set Greeting
         greeting.innerHTML = getGreeting();
 
-        // Add note
-        addButton.addEventListener("click", checkNotes);
+        //initialize Event Listeners
+        initializeEventListeners();
 
-        //check the note
-        noteArea.addEventListener("click", checkNote);
-
-        // delete the note
-        noteArea.addEventListener("click", deleteNote);
-
-        //edit the Note
-        noteArea.addEventListener("click", editNote);
+        //set local Storage
+        setLocalStorage();
     }
 });
+//initialize Event Listeners
+function initializeEventListeners() {
+    // Add note
+    addButton.addEventListener("click", checkNotes);
+    addButtonM.addEventListener("click", checkNotes);
+
+    //check the note
+    noteArea.addEventListener("click", checkNote);
+
+    // delete the note
+    noteArea.addEventListener("click", deleteNote);
+
+    //edit the Note
+    noteArea.addEventListener("click", editNote);
+}
 
 //Set Greeting
 function getGreeting() {
@@ -100,6 +132,7 @@ function addNote() {
 
         noteArea.appendChild(note);
         inputNote.value = "";
+        setLocalNotes();
     }
 }
 
@@ -117,6 +150,7 @@ function checkNote(e) {
 function deleteNote(e) {
     if (e.target.classList.contains("trash")) {
         e.target.parentNode.remove();
+        setLocalNotes();
     }
 }
 
@@ -180,6 +214,53 @@ function editNote(e) {
             checkNote.style.opacity = 1;
             editIcon.style.opacity = 1;
             trashIson.style.opacity = 1;
+            setLocalNotes();
         };
     }
+}
+
+//set name to local Storage
+function setLocalStorage() {
+    window.localStorage.setItem("name", nameInput.value);
+    window.localStorage.setItem("time", getGreeting());
+}
+
+//set notes to local Storage
+function setLocalNotes() {
+    let notes = [];
+    let allNotes = document.querySelectorAll(".notes-area .the-label");
+    allNotes.forEach((ele) => {
+        notes.push(ele.textContent);
+    });
+    window.localStorage.setItem("the notes", notes);
+}
+
+//display the saved notes
+function displaySavedNote(noteText) {
+    createdElement++;
+    let note = document.createElement("div");
+    note.classList.add("note");
+
+    let checkNoteDiv = document.createElement("div");
+    checkNoteDiv.classList.add("check-note");
+
+    let theNoteLabel = document.createElement("label");
+    theNoteLabel.htmlFor = `check${createdElement}`;
+    theNoteLabel.classList.add("the-label");
+
+    let theNote = document.createTextNode(noteText);
+    theNoteLabel.appendChild(theNote);
+
+    checkNoteDiv.appendChild(theNoteLabel);
+    note.appendChild(checkNoteDiv);
+
+    let editIcon = document.createElement("i");
+    editIcon.className = "edit fas fa-edit";
+    let trashIcon = document.createElement("i");
+    trashIcon.className = "trash fa-solid fa-trash";
+
+    note.appendChild(editIcon);
+    note.appendChild(trashIcon);
+
+    noteArea.appendChild(note);
 }
