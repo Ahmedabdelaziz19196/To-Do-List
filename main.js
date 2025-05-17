@@ -278,7 +278,6 @@ function displaySavedNote(noteText) {
 }
 
 logOut.addEventListener("click", function () {
-    console.log("yes");
     if (window.localStorage.getItem("name")) {
         window.localStorage.removeItem("name");
     }
@@ -288,6 +287,8 @@ logOut.addEventListener("click", function () {
     if (window.localStorage.getItem("the notes")) {
         window.localStorage.removeItem("the notes");
     }
-    window.alert("WARNING, You Will Lose All Your Data");
-    window.location.reload();
+    setTimeout(() => {
+        window.alert("WARNING, You Will Lose All Your Data");
+        window.location.reload();
+    }, 500);
 });
