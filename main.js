@@ -278,18 +278,18 @@ function displaySavedNote(noteText) {
 }
 
 logOut.addEventListener("click", function () {
-    if (window.localStorage.getItem("name")) {
-        window.localStorage.removeItem("name");
-    }
-    if (window.localStorage.getItem("time")) {
-        window.localStorage.removeItem("time");
-    }
-    if (window.localStorage.getItem("the notes")) {
-        window.localStorage.removeItem("the notes");
-    }
     setTimeout(() => {
         let confirmMsg = confirm("WARNING, You Will Lose All Your Data");
         if (confirmMsg) {
+            if (window.localStorage.getItem("name")) {
+                window.localStorage.removeItem("name");
+            }
+            if (window.localStorage.getItem("time")) {
+                window.localStorage.removeItem("time");
+            }
+            if (window.localStorage.getItem("the notes")) {
+                window.localStorage.removeItem("the notes");
+            }
             window.location.reload();
         }
     }, 500);
