@@ -17,9 +17,60 @@
             href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet"
         />
-        <title>Quizzy</title>
+        <title>Listify</title>
     </head>
     <body>
+        <div class="container">
+            <div class="intro-name">
+                <p class="main">Welcome To <span>Listify</span></p>
+                <div class="form">
+                    <input
+                        class="name-input"
+                        type="text"
+                        placeholder="Type Your Name"
+                    />
+                    <button class="submit">Submit</button>
+                </div>
+            </div>
+            <div class="main-page">
+                <div class="header">
+                    <p class="welcome">
+                        Welcome <span class="name"></span>,
+                        <span class="time"></span>
+                    </p>
+                    <p class="message">What do you plan to do today.</p>
+                </div>
+                <div class="body">
+                    <div class="input-note">
+                        <div class="body-header">
+                            <input
+                                class="toDo-input"
+                                type="text"
+                                placeholder="Add/Search note"
+                            />
+                            <button class="search">Search</button>
+                        </div>
+                        <div class="notes-area"></div>
+                        <span class="add-note">+</span>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="main.js"></script>
     </body>
 </html>
+
+<!-- <div class="note">
+    <div class="check-note">
+        <input type="checkbox" id="check3" />
+        <label class="the-label finished" for="check3"
+            >this is the note one three</label
+        >
+    </div>
+    <i class="edit fas fa-edit"></i>
+    <i class="trash fa-solid fa-trash"></i>
+    <div class="edit-area">
+        <input class="update-input" type="text" />
+        <button class="update-button">Update</button>
+    </div>
+</div> -->

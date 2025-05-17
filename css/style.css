@@ -1,0 +1,294 @@
+:root {
+    --main-theme: #4a90e2;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Cairo", sans-serif;
+    background-color: #323232;
+    height: 100%;
+    transition: 0.2s linear;
+    color: white;
+}
+* {
+    box-sizing: border-box;
+}
+html {
+    height: 100%;
+}
+/* Small */
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+input:focus {
+    outline: none;
+}
+p {
+    margin: 0;
+}
+
+/* Medium */
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+/* Large */
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    /* background-color: #323232; */
+    position: relative;
+}
+.container {
+    .intro-name {
+        position: absolute;
+        width: fit-content;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* position: relative; */
+        background-color: #1a1a1a;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        padding: 20px 50px;
+        border-radius: 20px;
+        transition: opacity 0.1s;
+        opacity: 1;
+        .main {
+            margin: 0;
+            margin-bottom: 15px;
+            font-size: 45px;
+            text-align: center;
+            span {
+                color: #4a90e2;
+                font-weight: bold;
+                font-size: 52px;
+                position: relative;
+                display: inline-block;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    background-color: white;
+                    width: 100%;
+                    height: 3px;
+                    top: 50%;
+                    left: 0;
+                }
+            }
+        }
+        .form {
+            display: flex;
+            gap: 7px;
+            margin-bottom: 10px;
+            .name-input {
+                flex: 1;
+                padding: 10px;
+                text-align: left;
+                border-radius: 10px;
+                border: none;
+            }
+            .submit {
+                color: white;
+                background-color: #4a90e2;
+                border: none;
+                border-radius: 10px;
+                font-weight: bold;
+                padding: 0 10px;
+                cursor: pointer;
+            }
+        }
+    }
+    .main-page {
+        display: none;
+        flex-direction: column;
+        height: 100%;
+        .header {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            .welcome {
+                margin-bottom: 10px;
+                font-size: 30px;
+                .name {
+                    color: var(--main-theme);
+                    font-weight: bold;
+                    text-transform: capitalize;
+                }
+                .time {
+                    display: inline-block;
+                }
+            }
+            .message {
+                color: #838383;
+                font-size: 17px;
+            }
+        }
+        .body {
+            flex: 1;
+            background-color: #1a1a1a;
+            border-radius: 20px;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            .body-header {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 20px;
+                .toDo-input {
+                    flex: 1;
+                    height: 35px;
+                    border-radius: 10px;
+                    border: none;
+                    padding: 10px;
+                }
+                .search {
+                    color: white;
+                    background-color: #4a90e2;
+                    border: none;
+                    border-radius: 10px;
+                    font-weight: bold;
+                    padding: 0 10px;
+                    cursor: pointer;
+                }
+            }
+            .add-note {
+                position: absolute;
+                right: 35px;
+                bottom: 35px;
+                width: 50px;
+                height: 50px;
+                font-size: 38px;
+                background-color: var(--main-theme);
+                text-align: center;
+                line-height: 42px;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: transform 0.3s;
+                &:hover {
+                    transform: rotate(90deg);
+                }
+            }
+            .notes-area {
+                position: relative;
+                .note {
+                    display: flex;
+                    font-size: 16px;
+                    padding: 5px;
+                    border-radius: 5px;
+                    padding: 10px;
+                    margin: 8px 72px 25px;
+                    transition: all 0.3s;
+                    border-bottom: 1px solid #83838336;
+                    position: relative;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                    .check-note {
+                        flex: 1;
+                        opacity: 1;
+                        input {
+                            position: relative;
+                            margin-right: 3px;
+                            top: -1px;
+                        }
+                        label {
+                            margin-left: 3px;
+                            font-weight: bold;
+                            display: inline-block;
+                            overflow: hidden;
+                            position: relative;
+                            text-transform: capitalize;
+                            font-size: 16px;
+                        }
+                    }
+                    .edit {
+                        opacity: 1;
+                        &:hover {
+                            color: #838383;
+                        }
+                    }
+                    .trash {
+                        opacity: 1;
+                        margin-left: 10px;
+                        transition: all 0.3s;
+                        &:hover {
+                            color: #dc3545;
+                        }
+                    }
+                    &:hover {
+                        background-color: #83838336;
+                    }
+                }
+                @media (max-width: 767px) {
+                    .note {
+                        margin: 8px 0 25px;
+                    }
+                }
+                .edit-area {
+                    position: absolute;
+                    display: flex;
+                    width: 100%;
+                    left: 0;
+                    padding: 0 10px;
+                    gap: 10px;
+                    .update-input {
+                        flex: 1;
+                        background-color: transparent;
+                        color: white;
+                        border: none;
+                        font-weight: bold;
+                        font-size: 16px;
+                        text-transform: capitalize;
+                    }
+                    .update-button {
+                        color: white;
+                        background-color: #4a90e2;
+                        border: none;
+                        border-radius: 10px;
+                        font-weight: bold;
+                        padding: 0 10px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .container .main-page .header .welcome {
+        font-size: 21px;
+    }
+    .container .main-page .header .message {
+        font-size: 15px;
+    }
+}
+
+label::after {
+    content: "";
+    position: absolute;
+    background-color: var(--main-theme);
+    width: 100%;
+    height: 3px;
+    left: -100%;
+    top: 51%;
+    transition: 0.3s;
+}
+label.finished::after {
+    left: 0;
+}
