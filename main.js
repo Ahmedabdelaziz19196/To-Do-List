@@ -288,7 +288,9 @@ logOut.addEventListener("click", function () {
         window.localStorage.removeItem("the notes");
     }
     setTimeout(() => {
-        window.alert("WARNING, You Will Lose All Your Data");
-        window.location.reload();
+        let confirmMsg = confirm("WARNING, You Will Lose All Your Data");
+        if (confirmMsg) {
+            window.location.reload();
+        }
     }, 500);
 });
