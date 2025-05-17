@@ -114,13 +114,17 @@ p {
     .main-page {
         display: none;
         flex-direction: column;
-        height: 100%;
+        height: 97vh;
+        overflow: hidden;
         .header {
             background-color: #1a1a1a;
             padding: 20px;
             border-radius: 20px;
             margin-bottom: 10px;
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            min-height: 80px;
             .welcome {
                 margin-bottom: 10px;
                 font-size: 30px;
@@ -137,6 +141,23 @@ p {
                 color: #838383;
                 font-size: 17px;
             }
+            .log-out {
+                position: absolute;
+                color: white;
+                background-color: #4a90e2;
+                border: none;
+                border-radius: 10px;
+                font-weight: bold;
+                padding: 10px;
+                cursor: pointer;
+                right: 20px;
+                bottom: -30px;
+                font-size: 16px;
+                transition: 0.3s;
+                &:hover {
+                    bottom: 0;
+                }
+            }
         }
         .body {
             flex: 1;
@@ -144,6 +165,7 @@ p {
             border-radius: 20px;
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
             padding: 20px;
+            overflow-y: auto;
             .body-header {
                 display: flex;
                 gap: 10px;

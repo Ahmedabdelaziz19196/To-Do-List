@@ -6,9 +6,9 @@ let theMainPage = document.querySelector(".main-page");
 let greeting = document.querySelector(".time");
 let addButton = document.querySelector(".add-note");
 let addButtonM = document.querySelector(".add-m");
-
 let inputNote = document.querySelector(".toDo-input");
 let noteArea = document.querySelector(".notes-area");
+let logOut = document.querySelector(".log-out");
 
 let createdElement = 0;
 window.addEventListener("load", function () {
@@ -142,6 +142,7 @@ function checkNote(e) {
         let theLabel = e.target.querySelector(".the-label");
         if (theLabel) {
             theLabel.classList.toggle("finished");
+            setLocalNotes();
         }
     }
 }
@@ -228,16 +229,25 @@ function setLocalStorage() {
 //set notes to local Storage
 function setLocalNotes() {
     let notes = [];
-    let allNotes = document.querySelectorAll(".notes-area .the-label");
-    allNotes.forEach((ele) => {
-        notes.push(ele.textContent);
+    let allNotes = document.querySelectorAll(".notes-area .note");
+
+    allNotes.forEach((note) => {
+        let label = note.querySelector(".the-label");
+        let isFinished = label.classList.contains("finished") ? "1" : "0";
+        notes.push(label.textContent + "|" + isFinished);
     });
+
     window.localStorage.setItem("the notes", notes);
 }
 
 //display the saved notes
 function displaySavedNote(noteText) {
     createdElement++;
+
+    let parts = noteText.split("|");
+    let actualText = parts[0];
+    let isFinished = parts[1] === "1";
+
     let note = document.createElement("div");
     note.classList.add("note");
 
@@ -247,9 +257,11 @@ function displaySavedNote(noteText) {
     let theNoteLabel = document.createElement("label");
     theNoteLabel.htmlFor = `check${createdElement}`;
     theNoteLabel.classList.add("the-label");
+    theNoteLabel.textContent = actualText;
 
-    let theNote = document.createTextNode(noteText);
-    theNoteLabel.appendChild(theNote);
+    if (isFinished) {
+        theNoteLabel.classList.add("finished");
+    }
 
     checkNoteDiv.appendChild(theNoteLabel);
     note.appendChild(checkNoteDiv);
@@ -264,3 +276,18 @@ function displaySavedNote(noteText) {
 
     noteArea.appendChild(note);
 }
+
+logOut.addEventListener("click", function () {
+    console.log("yes");
+    if (window.localStorage.getItem("name")) {
+        window.localStorage.removeItem("name");
+    }
+    if (window.localStorage.getItem("time")) {
+        window.localStorage.removeItem("time");
+    }
+    if (window.localStorage.getItem("the notes")) {
+        window.localStorage.removeItem("the notes");
+    }
+    window.alert("WARNING, You Will Lose All Your Data");
+    window.location.reload();
+});
