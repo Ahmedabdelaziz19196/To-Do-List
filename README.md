@@ -13,7 +13,7 @@ A simple ToDo List app built with HTML, CSS, and JavaScript without external lib
 - JavaScript - Logic
 
 ## Installation
-1. git clone https://github.com/your-username/todolist-vanilla-js.git
+1. git clone https://github.com/Ahmedabdelaziz19196/To-Do-List.git
 2. cd todolist-vanilla-js
 3. Open index.html in your browser.
 
